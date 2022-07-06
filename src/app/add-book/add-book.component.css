@@ -1,0 +1,39 @@
+.inputDivStyle{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    margin: 0.4em;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 1.1em;
+}
+
+.formStyle{
+    margin: 4vw 20vw 0vw 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4em;
+}
+
+input {
+    height: 2.5em;
+    border-radius: 3px;
+    border: 1px black solid;
+}
+
+button {
+    width: 16em;
+    height: 3em;
+    border-radius: 4px;
+    border: none;
+    align-self: center;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: rgb(39, 39, 39);
+}
