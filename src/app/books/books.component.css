@@ -1,0 +1,9 @@
+:host{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 6px;
+}
+
+.bookCard{
+    border: 1px black solid
+}

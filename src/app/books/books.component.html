@@ -1,1 +1,3 @@
-<p>books works!</p>
+<div *ngFor="let book of booksList | keyvalue" [ngClass]="{ bookCard : true }">
+    <p *ngFor="let value of book.value | keyvalue"> {{ value.value }} </p>
+</div>

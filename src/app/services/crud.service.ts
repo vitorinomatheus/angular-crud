@@ -7,13 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class CrudService {
 
+  private url = 'https://crud-angular-71d0b-default-rtdb.firebaseio.com/book.json';
+
   constructor(private http: HttpClient) { }
 
   public getBooks(): Observable<any>{
-    return this.http.get('https://crud-angular-71d0b-default-rtdb.firebaseio.com/books.json')
+    return this.http.get(this.url)
   }
 
   public postBooks(book : Object): Observable<any>{
-    return this.http.post('https://crud-angular-71d0b-default-rtdb.firebaseio.com/books.json', book)
+    return this.http.post(this.url, book)
   }
 }
