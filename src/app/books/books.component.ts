@@ -16,7 +16,6 @@ export class BooksComponent {
     this.CrudService.getBooks().subscribe((data:Array<any>) => {
 
       this.booksList = data;
-      console.log(this.booksList);
 
     }, (error:any) => {
 
@@ -24,4 +23,14 @@ export class BooksComponent {
     })
   }
 
+  delete(book : String){
+    this.CrudService.deleteBooks(book).subscribe((data:Array<any>) => {
+
+        console.log(data);
+        window.location.reload();
+    }, (error:any) => {
+      
+      console.log(error)
+    })
+  }
 }

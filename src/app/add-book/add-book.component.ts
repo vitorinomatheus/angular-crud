@@ -24,7 +24,7 @@ export class AddBookComponent {
 
 
     this.crudService.postBooks(newBook).subscribe((data:any) => {
-
+      console.log(data);
     },
     (error:any) => {
       console.log(error)

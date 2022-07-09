@@ -1,9 +1,70 @@
 :host{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 6px;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    grid-auto-rows: min-content;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    height: 100%;
 }
 
 .bookCard{
-    border: 1px black solid
+    border: 1px rgb(121, 121, 121) solid;
+    border-radius: 6px;
+    padding: 1rem 1.2rem 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow:row;
+}
+
+.bookCard:hover{
+    border: 1px solid black;
+    transition: .2s;
+    box-shadow: 0 0 3px black;
+}
+
+.bookTitle{
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    margin: 0.8rem
+}
+
+.bookText{
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    color: grey;
+    margin: 0.8rem;
+    grid-column: 1 / 2;
+}
+
+.delBtn{
+    grid-area: 1 / 2 / 2 / 3;
+    justify-self: end;
+    background: none;
+    border: none;
+    align-self: start;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.delBtn:hover{
+    color: rgb(197, 0, 0);
+    transform: scale(1.09);
+}
+
+.updateBtn{
+    cursor: pointer;
+    font-weight: bold;
+    width: 8em;
+    height: 2.5em;
+    justify-self: end;
+    align-self: end;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.updateBtn:hover{
+    background-color: rgb(248, 248, 248);
 }

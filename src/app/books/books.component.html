@@ -1,3 +1,8 @@
 <div *ngFor="let book of booksList | keyvalue" [ngClass]="{ bookCard : true }">
-    <p *ngFor="let value of book.value | keyvalue"> {{ value.value }} </p>
+    <p *ngFor="let value of book.value | keyvalue"
+    [ngClass]="value.key == 'Atitle' ? 'bookTitle' : 'bookText'">
+        {{value.value}}
+    </p>
+    <button [ngClass]="{delBtn : true}" (click)="delete(book.key)" routerLink="/">X</button> 
+    <button [ngClass]="{updateBtn : true}"  routerLink="update">Update</button>
 </div>

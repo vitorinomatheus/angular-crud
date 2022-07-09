@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { BooksComponent } from './books/books.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { UpdateBookComponent } from './update-book/update-book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppHeaderComponent,
     BooksComponent,
-    AddBookComponent 
+    AddBookComponent,
+    UpdateBookComponent 
   ],
   imports: [
     BrowserModule,
