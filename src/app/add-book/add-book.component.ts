@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CrudService } from '../services/crud.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { CrudService } from '../services/crud.service';
 })
 export class AddBookComponent {
 
-  constructor(private crudService: CrudService){}
+  constructor(private crudService: CrudService, private router : Router){}
 
   bookTitle = '';
   bookAuthor = '';
@@ -25,6 +26,7 @@ export class AddBookComponent {
 
     this.crudService.postBooks(newBook).subscribe((data:any) => {
       console.log(data);
+      this.router.navigateByUrl('/')
     },
     (error:any) => {
       console.log(error)

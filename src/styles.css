@@ -3,9 +3,11 @@
 
 html, body{
     margin: 0;
+    height: 100vh;
 }
 
 app-root{
-    display: grid;
+    display: block;
     grid-template-rows: max-content 1fr;
+    height: 100%;
 }

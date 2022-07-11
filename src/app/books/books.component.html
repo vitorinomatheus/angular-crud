@@ -4,5 +4,5 @@
         {{value.value}}
     </p>
     <button [ngClass]="{delBtn : true}" (click)="delete(book.key)" routerLink="/">X</button> 
-    <button [ngClass]="{updateBtn : true}"  routerLink="update">Update</button>
+    <button [ngClass]="{updateBtn : true}" (click)="selectBook(book.key)"  routerLink="update/{{book.key}}">Update</button>
 </div>

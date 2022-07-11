@@ -14,7 +14,7 @@ const routes: Routes = [
     component: AddBookComponent
   },
   {
-    path: 'update',
+    path: 'update/:book',
     component: UpdateBookComponent
   }
 ];
