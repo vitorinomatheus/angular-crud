@@ -1,4 +1,3 @@
-import { CommunicationService } from './../services/communication.service';
 import { CrudService } from './../services/crud.service';
 import { Component } from '@angular/core';
 
@@ -9,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class BooksComponent {
 
-  constructor(private CrudService : CrudService, private communication : CommunicationService) { this.getter() }
+  constructor(private CrudService : CrudService) { this.getter() }
 
   booksList: Array<any> = [];
 
@@ -34,9 +33,4 @@ export class BooksComponent {
       console.log(error)
     })
   }
-
-  selectBook(book : string){
-    this.communication.selectBook(book)
-  }
-
 }
