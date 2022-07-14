@@ -1,4 +1,4 @@
-<div [ngStyle]="headerStyle">
-    <h2 [ngStyle]="titleStyle" routerLink="/">{{ appTitle }}</h2>
-    <button [ngStyle]="buttonStyle" routerLink="/addbook">+ addBook</button>
+<div [ngClass]="{ headerStyle : true }">
+    <h2 [ngClass]="{ titleStyle : true }" routerLink="/">{{ appTitle }}</h2>
+    <button [ngClass]="{ buttonStyle : true }" routerLink="/addbook">+ addBook</button>
 </div>
