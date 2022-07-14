@@ -1,35 +1,40 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../services/crud.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
   styleUrls: ['./add-book.component.css']
 })
-export class AddBookComponent {
+export class AddBookComponent{
 
-  constructor(private crudService: CrudService, private router : Router){}
+  book: any;
+ 
+  constructor(
+    private crudService: CrudService, 
+    private router : Router, 
+    private fb : FormBuilder,
+  ) {}
 
-  bookTitle = '';
-  bookAuthor = '';
-  bookEdition = '';
-
-  book = (Atitle: string, Bauthor: string, Cedition: string) => {
-
-    return { Atitle, Bauthor, Cedition }
-  }
+  newBook = this.fb.group ({
+    Atitle: [''],
+    Bauthor: [''],
+    Cedition: ['']
+  });
 
   poster(){
-    let newBook = this.book(this.bookTitle, this.bookAuthor, this.bookEdition);
 
+    this.book = this.newBook.value;
 
-    this.crudService.postBooks(newBook).subscribe((data:any) => {
+    this.crudService.postBooks(this.book).subscribe((data:any) => {
       console.log(data);
       this.router.navigateByUrl('/')
     },
     (error:any) => {
       console.log(error)
     });
+
   }
 }

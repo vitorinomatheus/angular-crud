@@ -1,6 +1,8 @@
+import { FormBuilder } from '@angular/forms';
 import { CrudService } from './../services/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-update-book',
@@ -9,34 +11,47 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UpdateBookComponent implements OnInit{
 
-  book:any;
+  bookId:any;
   data:any;
 
-  bookTitle = '';
-  bookAuthor = '';
-  bookEdition = '';
+  updatedBook = this.fb.group ({
+    Atitle: [''],
+    Bauthor: [''],
+    Cedition: ['']
+  });
 
-  constructor(private CrudService:CrudService, private route:ActivatedRoute, private router : Router){}
+  constructor(
+    private CrudService:CrudService, 
+    private route:ActivatedRoute, 
+    private router : Router,
+    private fb : FormBuilder
+  ){}
 
   ngOnInit(){
 
-    this.book = this.route.snapshot.paramMap.get('book');
-    this.CrudService.getSelectedBook(this.book).subscribe((data) => {
+    this.bookId = this.route.snapshot.paramMap.get('book');
+    this.CrudService.getSelectedBook(this.bookId).subscribe((data) => {
 
       this.data = data;
 
-      this.bookTitle = this.data.Atitle;
-      this.bookAuthor = this.data.Bauthor;
-      this.bookEdition = this.data.Cedition;
+      this.updatedBook.controls['Atitle'].setValue(this.data.Atitle);
+      this.updatedBook.controls['Bauthor'].setValue(this.data.Bauthor);
+      this.updatedBook.controls['Cedition'].setValue(this.data.Cedition);
     })
 
   }
 
   updateBook(){
-    this.CrudService.updateBooks(this.book, this.data).subscribe((data) => {
+
+    this.data = this.updatedBook.value;
+
+    this.CrudService.updateBooks(this.bookId, this.data).subscribe((data) => {
+
       console.log(data)
       this.router.navigateByUrl('/')
+
     }, (error) => {
+
       console.log(error)
     })
   }

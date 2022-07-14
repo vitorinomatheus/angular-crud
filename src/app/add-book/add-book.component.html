@@ -1,20 +1,22 @@
-<form [ngClass]="{ formStyle : true }">
+<form [ngClass]="{ formStyle : true }" [formGroup]="newBook" (ngSubmit)="poster()">
+
     <h2>Register a new book</h2>
+
     <div [ngClass]="{ inputDivStyle : true }">
         <label for="title">Title</label>
-        <input type="text" name='book-title' [(ngModel)]="bookTitle" required>
+        <input type="text" name='book-title' formControlName = 'Atitle'>
     </div>    
 
     <div [ngClass]="{ inputDivStyle : true }">
         <label for="author">Author</label>
-        <input type="text" name='book-author' [(ngModel)]="bookAuthor" required>
+        <input type="text" name='book-author' formControlName = 'Bauthor'>
     </div>
     
     <div [ngClass]="{ inputDivStyle : true }">
         <label for="edition">Edition</label>
-        <input type="text" name='book-edition' [(ngModel)]="bookEdition" required>
+        <input type="text" name='book-edition' formControlName = 'Cedition'>
     </div>
     
 
-    <button (click)="poster()">Register</button>
+    <button type="submit">Register</button>
 </form>

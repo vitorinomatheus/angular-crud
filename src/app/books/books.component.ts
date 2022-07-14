@@ -27,7 +27,7 @@ export class BooksComponent {
     this.CrudService.deleteBooks(book).subscribe((data:Array<any>) => {
 
         console.log(data);
-        window.location.reload();
+        this.getter();
     }, (error:any) => {
       
       console.log(error)
