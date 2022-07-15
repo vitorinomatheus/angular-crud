@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Book } from './bookStruct.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CrudService {
     return this.http.get(`${this.url}.json`)
   }
 
-  public postBooks(book : Object): Observable<any>{
+  public postBooks(book : Book): Observable<Book>{
     return this.http.post(`${this.url}.json`, book)
   }
 
@@ -23,11 +24,11 @@ export class CrudService {
     return this.http.delete(`${this.url}/${book}.json`)
   }
 
-  public updateBooks(book: String, info : Object): Observable<any>{
+  public updateBooks(book: String, info : Book): Observable<any>{
     return this.http.patch(`${this.url}/${book}.json`, info)
   }
 
-  public getSelectedBook(book: string): Observable<any>{
+  public getSelectedBook(book: Book): Observable<Book>{
     return this.http.get(`${this.url}/${book}.json`)
   }
 }

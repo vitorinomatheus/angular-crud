@@ -1,3 +1,4 @@
+import { Book } from './../services/bookStruct.model';
 import { FormBuilder } from '@angular/forms';
 import { CrudService } from './../services/crud.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateBookComponent implements OnInit{
 
   bookId:any;
-  data:any;
+  book!:Book;
 
   updatedBook = this.fb.group ({
     Atitle: [''],
@@ -32,20 +33,20 @@ export class UpdateBookComponent implements OnInit{
     this.bookId = this.route.snapshot.paramMap.get('book');
     this.CrudService.getSelectedBook(this.bookId).subscribe((data) => {
 
-      this.data = data;
+      this.book = data;
 
-      this.updatedBook.controls['Atitle'].setValue(this.data.Atitle);
-      this.updatedBook.controls['Bauthor'].setValue(this.data.Bauthor);
-      this.updatedBook.controls['Cedition'].setValue(this.data.Cedition);
+      this.updatedBook.controls['Atitle'].setValue(this.book.Atitle!);
+      this.updatedBook.controls['Bauthor'].setValue(this.book.Bauthor!);
+      this.updatedBook.controls['Cedition'].setValue(this.book.Cedition!);
     })
 
   }
 
   updateBook(){
 
-    this.data = this.updatedBook.value;
+    this.book = this.updatedBook.value;
 
-    this.CrudService.updateBooks(this.bookId, this.data).subscribe((data) => {
+    this.CrudService.updateBooks(this.bookId, this.book).subscribe((data) => {
 
       console.log(data)
       this.router.navigateByUrl('/')

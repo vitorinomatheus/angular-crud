@@ -1,3 +1,4 @@
+import { Book } from './../services/bookStruct.model';
 import { CrudService } from './../services/crud.service';
 import { Component } from '@angular/core';
 
@@ -24,7 +25,7 @@ export class BooksComponent {
   }
 
   delete(book : String){
-    this.CrudService.deleteBooks(book).subscribe((data:Array<any>) => {
+    this.CrudService.deleteBooks(book).subscribe((data:any) => {
 
         console.log(data);
         this.getter();

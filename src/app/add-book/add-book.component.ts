@@ -1,7 +1,8 @@
+import { Book } from './../services/bookStruct.model';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../services/crud.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-book',
@@ -10,7 +11,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AddBookComponent{
 
-  book: any;
+  book!: Book;
  
   constructor(
     private crudService: CrudService, 
@@ -28,7 +29,7 @@ export class AddBookComponent{
 
     this.book = this.newBook.value;
 
-    this.crudService.postBooks(this.book).subscribe((data:any) => {
+    this.crudService.postBooks(this.book).subscribe((data:Book) => {
       console.log(data);
       this.router.navigateByUrl('/')
     },
