@@ -12,17 +12,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AddBookComponent{
 
   book!: Book;
- 
+
   constructor(
-    private crudService: CrudService, 
-    private router : Router, 
+    private crudService: CrudService,
+    private router : Router,
     private fb : FormBuilder,
   ) {}
 
   newBook = this.fb.group ({
-    Atitle: [''],
-    Bauthor: [''],
-    Cedition: ['']
+    title: [''],
+    author: [''],
+    edition: ['']
   });
 
   poster(){

@@ -1,6 +1,7 @@
 export class Book {
-    Atitle?: string | null;
-    Bauthor?: string | null;
-    Cedition?: string | null;
+    id?: number | null;
+    title?: string | null;
+    author?: string | null;
+    edition?: string | null;
 }
-    
+

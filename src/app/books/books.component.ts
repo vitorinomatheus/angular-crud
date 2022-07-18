@@ -24,13 +24,13 @@ export class BooksComponent {
     })
   }
 
-  delete(book : String){
+  delete(book : Book){
     this.CrudService.deleteBooks(book).subscribe((data:any) => {
 
         console.log(data);
         this.getter();
     }, (error:any) => {
-      
+
       console.log(error)
     })
   }

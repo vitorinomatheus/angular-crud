@@ -8,27 +8,27 @@ import { Book } from './bookStruct.model';
 })
 export class CrudService {
 
-  private url = 'https://crud-angular-71d0b-default-rtdb.firebaseio.com/book';
+  private url = 'https://localhost:7271/v1/books';
 
   constructor(private http: HttpClient) { }
 
-  public getBooks(): Observable<any>{
-    return this.http.get(`${this.url}.json`)
+  public getBooks(): Observable<Book[]>{
+    return this.http.get<Book[]>(this.url)
   }
 
   public postBooks(book : Book): Observable<Book>{
-    return this.http.post(`${this.url}.json`, book)
+    return this.http.post(`${this.url}`, book)
   }
 
-  public deleteBooks(book : String): Observable<any>{
-    return this.http.delete(`${this.url}/${book}.json`)
+  public deleteBooks(book : Book): Observable<Book>{
+    return this.http.delete(`${this.url}/${book.id}`)
   }
 
-  public updateBooks(book: String, info : Book): Observable<any>{
-    return this.http.patch(`${this.url}/${book}.json`, info)
+  public updateBooks(book : Book): Observable<Book>{
+    return this.http.put(`${this.url}/${book.id}`, book)
   }
 
-  public getSelectedBook(book: Book): Observable<Book>{
-    return this.http.get(`${this.url}/${book}.json`)
+  public getSelectedBook(book: Number): Observable<Book>{
+    return this.http.get(`${this.url}/${book}`)
   }
 }
