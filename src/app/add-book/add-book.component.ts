@@ -28,14 +28,12 @@ export class AddBookComponent implements OnInit{
   ngOnInit(){
 
     this.newBookFormGroup.valueChanges.subscribe(value => {
-      console.log(value)
+      this.book = value;
     });
 
   }
 
   poster(){
-
-    this.book = this.newBookFormGroup.value;
 
     this.crudService.postBooks(this.book).subscribe((data:Book) => {
       console.log(data);
