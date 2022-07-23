@@ -12,11 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UpdateBookComponent implements OnInit{
 
-  bookId!:number;
   book!:Book;
 
-  updatedBook = this.fb.group ({
-    id: this.bookId,
+  updatedBookFormGroup = this.fb.group ({
+    id: 0,
     title: [''],
     author: [''],
     edition: [''],
@@ -27,26 +26,32 @@ export class UpdateBookComponent implements OnInit{
     private route:ActivatedRoute,
     private router : Router,
     private fb : FormBuilder
-  ){}
+  ){ this.getBook()}
 
   ngOnInit(){
 
-    this.bookId = parseInt(this.route.snapshot.paramMap.get('book')!);
-    this.CrudService.getSelectedBook(this.bookId).subscribe((data) => {
+    this.updatedBookFormGroup.valueChanges.subscribe(value => {
+      this.book = value;
+    })
 
-      this.book = data;
+  }
 
-      this.updatedBook.controls['title'].setValue(this.book.title!);
-      this.updatedBook.controls['author'].setValue(this.book.author!);
-      this.updatedBook.controls['edition'].setValue(this.book.edition!);
-      this.updatedBook.controls['id'].setValue(this.book.id!);
+  getBook(){
+
+    let selectedBook : Book = {
+      id: 0,
+    };
+
+    selectedBook.id = parseInt(this.route.snapshot.paramMap.get('book')!);
+    this.CrudService.getSelectedBook(selectedBook).subscribe((data) => {
+
+      this.updatedBookFormGroup.setValue(data);
+
     })
 
   }
 
   updateBook(){
-
-    this.book = this.updatedBook.value;
 
     this.CrudService.updateBooks(this.book).subscribe((data) => {
 
@@ -56,6 +61,7 @@ export class UpdateBookComponent implements OnInit{
     }, (error) => {
 
       console.log(error)
+
     })
   }
 }

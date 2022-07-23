@@ -28,7 +28,7 @@ export class CrudService {
     return this.http.put(`${this.url}/${book.id}`, book)
   }
 
-  public getSelectedBook(book: Number): Observable<Book>{
-    return this.http.get(`${this.url}/${book}`)
+  public getSelectedBook(book: Book): Observable<any>{
+    return this.http.get(`${this.url}/${book.id}`)
   }
 }

@@ -1,5 +1,5 @@
 import { Book } from './../services/bookStruct.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../services/crud.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './add-book.component.html',
   styleUrls: ['./add-book.component.css']
 })
-export class AddBookComponent{
+export class AddBookComponent implements OnInit{
 
   book!: Book;
 
@@ -19,15 +19,23 @@ export class AddBookComponent{
     private fb : FormBuilder,
   ) {}
 
-  newBook = this.fb.group ({
+  newBookFormGroup = this.fb.group ({
     title: [''],
     author: [''],
     edition: ['']
   });
 
+  ngOnInit(){
+
+    this.newBookFormGroup.valueChanges.subscribe(value => {
+      console.log(value)
+    });
+
+  }
+
   poster(){
 
-    this.book = this.newBook.value;
+    this.book = this.newBookFormGroup.value;
 
     this.crudService.postBooks(this.book).subscribe((data:Book) => {
       console.log(data);
